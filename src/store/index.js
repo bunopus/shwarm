@@ -18,9 +18,9 @@ export default new Vuex.Store({
   },
   actions: {
     loadReviews ({ commit }) {
-      reviews.getReviews(reviews => {
+      return reviews.getReviews(reviews => {
         commit('setReviews', reviews)
-      }, 1000)
+      })
     }
   }
 })

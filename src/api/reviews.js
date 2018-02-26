@@ -8,6 +8,6 @@ const _reviews = [
 
 export default {
   getReviews (cb) {
-    setTimeout(() => cb(_reviews), 500)
+    return new Promise((resolve) => setTimeout(() => { resolve(); cb(_reviews) }, 1500))
   }
 }
