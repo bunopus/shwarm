@@ -1,17 +1,22 @@
 <template>
   <div>
-    <v-progress-circular indeterminate color="primary" v-if="loading"></v-progress-circular>
+    <v-progress-circular indeterminate color="primary" v-if="loading"/>
 
-    <span v-for="entry in reviews">{{entry.title}}</span>
+    <Card v-else v-for="review in reviews" :review="review"></Card>
   </div>
 </template>
 
 <script>
+  import Card from './Card'
+
   export default {
     data () {
       return {
         loading: true
       }
+    },
+    components: {
+      Card
     },
     computed: {
       reviews () {
