@@ -1,15 +1,18 @@
 <template>
   <div>
-      <span v-for="entry in entries">{{entry.name}}</span>
+      <span v-for="entry in reviews">{{entry.title}}</span>
   </div>
 </template>
 
 <script>
   export default {
     computed: {
-      entries () {
-        return this.$store.state.entries
+      reviews () {
+        return this.$store.state.reviews
       }
+    },
+    created () {
+      this.$store.dispatch('loadReviews')
     }
   }
 </script>
