@@ -1,4 +1,4 @@
-# shawermagram
+# shwarm
 
 > Social network for shawerma lovers
 
