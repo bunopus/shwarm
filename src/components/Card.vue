@@ -1,12 +1,12 @@
 <template>
   <div v-if="review">
-    <v-card width="400px">
+    <v-card width="350px">
       <v-card-media :src="review.image" height="200px">
       </v-card-media>
       <v-card-title primary-title>
         <div>
           <h3 class="headline mb-0">{{review.title}}</h3>
-          <div>{{review.text}}</div>
+          <div>{{review.text | limit}}</div>
         </div>
       </v-card-title>
       <v-card-actions>
@@ -18,11 +18,17 @@
 </template>
 
 <script>
+  import limit from '../filters/limit'
   export default {
-    props: ['review']
+    props: ['review'],
+    filters: {
+      limit
+    }
   }
 </script>
 
 <style scoped>
-
+  .headline {
+    padding-bottom: 10px;
+  }
 </style>
