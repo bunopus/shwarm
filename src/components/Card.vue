@@ -1,6 +1,6 @@
 <template>
   <div v-if="review">
-    <v-card width="350px">
+    <v-card width="300px">
       <v-card-media :src="review.image" height="200px">
       </v-card-media>
       <v-card-title primary-title>
