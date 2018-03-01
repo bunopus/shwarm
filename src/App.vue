@@ -10,7 +10,7 @@
     </v-toolbar>
     <v-content>
       <v-container fluid>
-          <Grid/>
+        <router-view></router-view>
       </v-container>
     </v-content>
     <v-footer app class="footer"><a href="https://ru.freepik.com/free-photos-vectors/food">Food векторы разработан Freepik</a></v-footer>

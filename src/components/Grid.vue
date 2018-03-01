@@ -14,10 +14,13 @@
         <div v-masonry :column-width="'.item'" :item-selector="'.item'" v-else transition-duration="0.7s">
           <div class="gutter-item"></div>
           <div v-masonry-tile class="item" v-for="review in reviews">
-            <Card :review="review"></Card>
+            <Card :review="review" v-on:expand="expand(review)"></Card>
           </div>
         </div>
     </v-card>
+    <v-dialog v-model="shouldExpand" width="600px" :scrollable="true" :lazy="true">
+        <Card :review="expandedReview" :expanded="true"></Card>
+    </v-dialog>
   </div>
 </template>
 
@@ -28,7 +31,9 @@
   export default {
     data () {
       return {
-        loading: true
+        loading: true,
+        shouldExpand: false,
+        expandedReview: null
       }
     },
     components: {
@@ -46,7 +51,11 @@
       this.$redrawVueMasonry()
     },
     methods: {
-      ...mapMutations([ 're_sort' ])
+      ...mapMutations([ 're_sort' ]),
+      expand (review) {
+        this.shouldExpand = true
+        this.expandedReview = review
+      }
     }
   }
 </script>
