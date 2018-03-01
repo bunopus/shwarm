@@ -6,7 +6,8 @@
       <v-card-title primary-title>
         <div>
           <h3 class="headline mb-0">{{review.title}}</h3>
-          <div>{{review.text | limit(gerRand(200, 300))}}</div>
+            <Shmeter :score="review.score"></Shmeter>
+            <div>{{review.text | limit(gerRand(200, 300))}}</div>
         </div>
       </v-card-title>
       <v-card-actions>
@@ -19,6 +20,8 @@
 
 <script>
   import limit from '../filters/limit'
+  import Shmeter from './Shmeter'
+
   export default {
     props: ['review'],
     filters: {
@@ -28,6 +31,9 @@
       gerRand (min, max) {
         return Math.floor(Math.random() * max) + min
       }
+    },
+    components: {
+      Shmeter
     }
   }
 </script>
