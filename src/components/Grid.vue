@@ -5,13 +5,13 @@
         <v-btn icon>
           <v-icon>add_circle_outline</v-icon>
         </v-btn>
-        <v-btn icon>
+        <v-btn icon v-on:click="re_sort">
           <v-icon>sort</v-icon>
         </v-btn>
         <v-spacer/>
       </v-toolbar>
         <v-progress-circular indeterminate color="primary" v-if="loading"/>
-        <div v-masonry :column-width="'.item'" :item-selector="'.item'" v-else>
+        <div v-masonry :column-width="'.item'" :item-selector="'.item'" v-else transition-duration="0.7s">
           <div class="gutter-item"></div>
           <div v-masonry-tile class="item" v-for="review in reviews">
             <Card :review="review"></Card>
@@ -23,6 +23,7 @@
 
 <script>
   import Card from './Card'
+  import { mapMutations } from 'vuex'
 
   export default {
     data () {
@@ -40,6 +41,12 @@
     },
     created () {
       this.$store.dispatch('loadReviews').then(() => (this.loading = false))
+    },
+    updated () {
+      this.$redrawVueMasonry()
+    },
+    methods: {
+      ...mapMutations([ 're_sort' ])
     }
   }
 </script>
