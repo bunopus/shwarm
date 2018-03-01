@@ -1,13 +1,13 @@
 <template>
   <div v-if="review">
     <v-card width="300px">
-      <v-card-media :src="review.image" :height="gerRand(150, 250)">
+      <v-card-media :src="review.image" :height="getRand(150, 250)">
       </v-card-media>
       <v-card-title primary-title>
         <div>
           <h3 class="headline mb-0">{{review.title}}</h3>
             <Shmeter :score="review.score"></Shmeter>
-            <div>{{review.text | limit(gerRand(200, 300))}}</div>
+            <div>{{review.text | limit(getRand(200, 300))}}</div>
         </div>
       </v-card-title>
       <v-card-actions>
@@ -28,7 +28,7 @@
       limit
     },
     methods: {
-      gerRand (min, max) {
+      getRand (min, max) {
         return Math.floor(Math.random() * max) + min
       }
     },
