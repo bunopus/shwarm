@@ -6,13 +6,14 @@
       <v-card-title primary-title>
         <div>
           <h3 class="headline mb-0">{{review.title}}</h3>
-            <Shmeter :score="review.score"></Shmeter>
-            <div>{{review.text | limit(getRand(200, 300))}}</div>
+          <Shmeter :score="review.score"/>
+          <div>{{review.text | limit(getRand(200, 300))}}</div>
         </div>
       </v-card-title>
       <v-card-actions>
-        <v-btn flat color="orange">Share</v-btn>
-        <v-btn flat color="orange">Explore</v-btn>
+        <v-btn flat color="orange" icon>
+          <v-icon>expand_more</v-icon>
+        </v-btn>
       </v-card-actions>
     </v-card>
   </div>
