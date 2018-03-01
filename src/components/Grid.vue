@@ -2,7 +2,7 @@
   <div>
     <v-card flat>
       <v-toolbar card prominent color="orange" class="toolbar">
-        <v-btn icon>
+        <v-btn icon v-on:click="showNewDialog = true">
           <v-icon>add_circle_outline</v-icon>
         </v-btn>
         <v-btn icon v-on:click="re_sort">
@@ -18,26 +18,30 @@
           </div>
         </div>
     </v-card>
-    <v-dialog v-model="shouldExpand" width="600px" :scrollable="true" :lazy="true">
+    <v-dialog v-model="expandCard" width="600px" :scrollable="true" :lazy="true">
         <Card :review="expandedReview" :expanded="true"></Card>
     </v-dialog>
+    <NewCard :show="showNewDialog" v-on:closed="showNewDialog = false"/>
   </div>
 </template>
 
 <script>
   import Card from './Card'
+  import NewCard from './NewCard'
   import { mapMutations } from 'vuex'
 
   export default {
     data () {
       return {
         loading: true,
-        shouldExpand: false,
+        expandCard: false,
+        showNewDialog: false,
         expandedReview: null
       }
     },
     components: {
-      Card
+      Card,
+      NewCard
     },
     computed: {
       reviews () {
@@ -53,7 +57,7 @@
     methods: {
       ...mapMutations([ 're_sort' ]),
       expand (review) {
-        this.shouldExpand = true
+        this.expandCard = true
         this.expandedReview = review
       }
     }

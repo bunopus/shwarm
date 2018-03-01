@@ -10,12 +10,12 @@ export default new Router({
       path: '/',
       name: 'reviews',
       component: Grid
-    },
-    {
-      //TODO use for card open
-      path: '/reviews/:id',
-      name: 'reviews',
-      component: Grid
     }
+    // TODO add route for cards
+    // {
+    //   path: '/reviews/:id',
+    //   name: 'reviews',
+    //   component: Grid
+    // }
   ]
 })
