@@ -6,10 +6,13 @@
       <v-text-field
         label="Name"
         v-model="name"
-        :rules="nameRules"
-        :counter="10"
         required
       />
+        <file-input
+          accept="image/*"
+          ref="fileInput"
+          @input="getUploadedFile"
+        />
 
       <v-btn
         @click="submit"
@@ -24,14 +27,17 @@
 </template>
 
 <script>
+  import FileInput from './FileInput'
+
   export default {
     name: 'new-card',
     props: ['show'],
+    components: {FileInput},
     computed: {
-      showed: { get: function () {
-        return this.show
-      },
-        // setter
+      showed: {
+        get: function () {
+          return this.show
+        },
         set: function (newValue) {
           if (!newValue) {
             this.$emit('closed')
@@ -40,13 +46,13 @@
     },
     data: () => ({
       valid: true,
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters'
-      ],
       name: ''
     }),
     methods: {
+      getUploadedFile (e) {
+        this.image = e
+        console.log(e)
+      },
       submit () {
         if (this.$refs.form.validate()) {
           // Native form submission is not yet supported
