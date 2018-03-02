@@ -1,6 +1,8 @@
 # shwarm
 
 > Social network for shawerma lovers
+This repo is a joke, i'm just trying to know Vue
+
 
 ## Build Setup
 
