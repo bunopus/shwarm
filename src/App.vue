@@ -7,6 +7,13 @@
     <v-toolbar app height='100px'>
       <v-toolbar-title><img src="./assets/logo.png">
       </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn flat> <v-avatar>
+          <img src="./assets/avatar.jpg" alt="Юрий">
+        </v-avatar>
+        </v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <v-content>
       <v-container fluid>
