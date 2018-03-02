@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="preview" v-if="value">
       <img
         :src="imageUrl"
         ref="imageUrl"
@@ -10,10 +10,10 @@
       >
     </div>
     <div>
-      <v-btn raised @click="onPickFile" v-if="!imageUrl">
+      <v-btn raised @click="onPickFile" v-if="!imageUrl" class="button">
         {{ selectLabel }}
       </v-btn>
-      <v-btn raised class="error" @click="removeFile" v-else>
+      <v-btn raised class="error button" @click="removeFile" v-else>
         {{ removeLabel }}
       </v-btn>
       <input
@@ -55,6 +55,7 @@
 
     watch: {
       value (v) {
+        debugger
         this.imageUrl = v
       }
     },
@@ -82,7 +83,6 @@
           fileReader.addEventListener('load', () => {
             this.imageUrl = fileReader.result
             this.$emit('input', this.imageUrl)
-            debugger
           }, false)
           fileReader.readAsDataURL(files[0])
         }
@@ -99,5 +99,8 @@
   input[type=file] {
     position: absolute;
     left: -99999px;
+  }
+  .button {
+    margin-left: 0;
   }
 </style>
