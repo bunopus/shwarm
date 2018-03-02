@@ -5,8 +5,8 @@
       <v-form v-model="valid" ref="form" lazy-validation>
       <v-text-field
         label="Название"
-        v-model="name"
-        :rules="nameRules"
+        v-model="title"
+        :rules="titleRules"
         required
       />
         <file-input
@@ -62,13 +62,13 @@
     },
     data: () => ({
       valid: true,
-      name: '',
-      nameRules: [
+      title: '',
+      titleRules: [
         v => !!v || 'Название обязательно',
         v => v.length >= 5 || 'Название должно быть не меньше 5 символов'
       ],
       image: '',
-      score: 0,
+      score: '',
       scoreRules: [
         v => !!v || 'Оценка обязательна',
         v => v <= 5 || 'Слишком хорошо, чтобы быть правдой'
@@ -82,13 +82,16 @@
     methods: {
       submit () {
         if (this.$refs.form.validate()) {
-          // Native form submission is not yet supported
-          // axios.post('/api/submit', {
-          //   name: this.name,
-          //   email: this.email,
-          //   select: this.select,
-          //   checkbox: this.checkbox
-          // })
+          let review = {
+            'title': this.title,
+            'score': this.score,
+            'image': this.image,
+            'text': this.description
+          }
+          this.$store.dispatch('addReview', review).then(() => {
+            this.clear()
+            this.showed = false
+          })
         }
       },
       clear () {

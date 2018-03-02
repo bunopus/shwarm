@@ -55,7 +55,6 @@
 
     watch: {
       value (v) {
-        debugger
         this.imageUrl = v
       }
     },
