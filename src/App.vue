@@ -40,7 +40,7 @@ export default {
   created () {
     setTimeout(() => {
       this.preloading = false
-    }, 3000)
+    }, 5000)
   }
 }
 </script>
